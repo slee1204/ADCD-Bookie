@@ -8,17 +8,22 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-    const [search, setSearch] = useState("")
+    const [keyword, setKeyWord] = useState("")
     const [bookData, setBookData] = useState([]);
     const searchBook=(e)=>{
-        if(e.key === "Enter"){
-            axios.get('https://www.googleapis.com/books/v1/volumes?q=subject:'+search+'&key=AIzaSyAILo6V3o56v_azR9rm8GZVzrBMgLogWDQ&maxResults=40')
+        
+            if(e.key === "Enter"){
+            axios.get('https://www.googleapis.com/books/v1/volumes?q=subject:'+keyword+'&key=AIzaSyAILo6V3o56v_azR9rm8GZVzrBMgLogWDQ&maxResults=40&orderBy=relevance')
             .then(res=>{
             setBookData(res.data.items)
+            for (let i = 0; i < res.data.items.length; i++){
+            console.log(res.data.items[i].volumeInfo.categories)}
             }).catch(err=>{
             console.log(err)
             })
         }
+        
+        
     }
 
     return(
@@ -33,12 +38,12 @@ export default function Home() {
                         <input 
                         type="text" 
                         placeholder="Enter Genre of Book" 
-                        value={search}
-                        onChange={e=>setSearch(e.target.value)}
+                        value={keyword}
+                        onChange={e=>setKeyWord(e.target.value)}
                         onKeyDown={searchBook}
                         />
                         <button
-                            onClick={searchBook}
+                        
                         >Search</button>
                     </div>
                 </div>
