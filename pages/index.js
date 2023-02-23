@@ -1,20 +1,12 @@
-import { Inter } from "@next/font/google";
 import React from "react";
 import { useRouter } from "next/router";
 import Button from "@/comp/Button";
-import styled from "styled-components";
-import { FlexBox, Container } from "@/Variables/variables";
 import Head from "next/head";
-
-const inter = Inter({ subsets: ["latin"] });
-
-const Layout = styled(FlexBox)`
-  height: 100vh;  
-  justify-content: center;
-`
+import styles from "../styles/Home.module.css"
 
 export default function Home() {
   const router = useRouter();
+  const src = "tobechanged.png"
 
   return (<>
     <Head>
@@ -24,19 +16,27 @@ export default function Home() {
       <meta property="og:description" content="A book recommendation app; Find a book you like" />
       <link rel="icon" href="/favicon.png" />
     </Head>
-    <Layout>
-      <Container
-        alignItems="center"
-        justifyContent="center"
-        height="70%">
-        <h1>Welcome to Bookie</h1>
-        <h2>Find a book you like.</h2>
-      </Container>
-        <Button
-          text="Get started"
-          handleClick={() => router.push("/onboarding")}
-        />
-    </Layout>
+    <main className={styles.main}>
+      <div className={styles.grid}>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <div className={styles.em}>WELCOME TO</div>
+            <h1 className={styles.heading}>BOOKIE</h1>
+            <div className={styles.textCont}>
+              <p>Find your <span className={styles.em}>next favourite book</span> today!</p>
+              <p >Explore a world of new reading possibilities by selecting your favourite book categories on our personalized recommendation website.</p>
+            </div>
+          </div>
+          <Button
+            text="Get started"
+            handleClick={() => router.push("/genres")}
+          />
+        </div>
+        <div>
+          <img src={src} />
+        </div>
+      </div>
+    </main>
   </>
   );
 }
