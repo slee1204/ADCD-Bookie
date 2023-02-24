@@ -2,6 +2,7 @@ import { colors } from "@/Variables/variables";
 import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const NavbarCont = styled.div`
   position: relative;
@@ -23,6 +24,7 @@ const Comps = styled.div`
 export default function Navbar() {
 
   const [searchInput, setSearchInput] = useState("");
+  const router = useRouter();
 
   if (searchInput.length > 0) {
     data.filter((category) => {
@@ -39,7 +41,7 @@ export default function Navbar() {
 
   return <NavbarCont>
     <Comps>
-      <img src={logo} />
+      <img src={logo} onClick={()=> router.push("/")} />
       <SearchBar handleChange={handleChange} />
     </Comps>
   </NavbarCont>
