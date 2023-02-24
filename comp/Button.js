@@ -14,8 +14,9 @@ const ButtonCont = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 350px;
+  width: 367px;
   height: 70px;
+  min-height: 70px;
   border: 2px solid ${styles.border};
   border-radius: 10px;
   font-weight: 500;
