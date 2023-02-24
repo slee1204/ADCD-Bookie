@@ -1,60 +1,65 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import Keyword from "@/comp/Keyword";
+import Genre from "@/comp/Genre";
 import Button from "@/comp/Button";
 import { useRouter } from "next/router";
+import styles from "../styles/Genres.module.css";
+import Head from "next/head";
+import { genres } from "@/public/data/genres";
 
-export default function onboarding() {
-  const [name, setName] = useState("");
-  const [header, setHeader] = useState("Enter your name");
-  const [keyword, setKeyword] = useState("");
-  const [keywords, setKeywords] = useState([]);
+export default function Onboarding() {
+  const [genre, setGenre] = useState("fiction");
   const router = useRouter();
 
-  const chooseGenres = async () => {
-    setHeader("Choose your favourite genres");
+  useEffect(() => {
+    console.log(genre);
+    // showGenres()s
+  }, []);
 
-    const apiKey = "AIzaSyDwqGo8hs4GSZ-NDeHRIGbVeL66zKGNDlM"
-
-    const results = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=subject:${keyword}&key=${apiKey}&maxResults=40`
-    );
-
-    for (var i = 0; i < results.data.items.length; i++) {
-      const categories = results.data.items[i].volumeInfo.categories;
-
-      if (categories !== undefined) {
-        const category = categories.values();
-        for (const type of category) {
-          keywords.push(type);
-          setKeyword(type);
-        }
-      }
-    }
-    console.log(keywords);
+  const chooseGenre = (genre) => {
+    setGenre(genre);
+    console.log(genre)
   };
 
-  return <>
-    <h1>{header}</h1>
-    {
-      !keyword && <> <input
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        type="text"
-        placeholder="Enter your name" />
-        <Button handleClick={chooseGenres} text="Next"></Button>
-      </>
-    }
-    {
-      keyword && <>
-        {
-          keywords.map((o, i) => (
-            <Keyword key={i} value={o} />
-          ))
-        }
-        <Button handleClick={() => router.push("/dashboard")} text="Get Recommendations"></Button>
-      </>
-    }
+  const showRecommendations = async () => {
+    const apiKey = "AIzaSyAQ69YB558lrwgkjXDixSDKwzUv8HaW9e0";
+    const results = await axios.get(
+      `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&key=${apiKey}&maxResults=40`
+    );
+    console.log(results.data);
+    router.push({pathname: "/results", query: {genre: genre}});
+  };
 
-  </>
+  return (
+    <>
+      <Head>
+        <title>Welcome to Bookie</title>
+        <meta name="author" content="Anna Jeong, Sue Lee" />
+        <meta property="og:title" content="MDIA 3190 Final Project" />
+        <meta
+          property="og:description"
+          content="A book recommendation app; Find a book you like"
+        />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+      <main className={styles.main}>
+        <div className={styles.container}>
+          <h1>Choose Your Favourite Genre</h1>
+          <div className={styles.flexContainer}>
+            {genres &&
+              genres.map((o, i) => (
+                <Genre
+                  key={i}
+                  handleClick={() => chooseGenre(o.query)}
+                  text={o.title}
+                  src={o.src}
+                  alt={o.title + " Genre Icon"}
+                />
+              ))}
+          </div>
+        </div>
+        <Button handleClick={showRecommendations} text="Get Recommendations" />
+      </main>
+    </>
+  );
 }
