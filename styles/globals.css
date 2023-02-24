@@ -1,20 +1,34 @@
+@import '../styles/variables.css';
+
 * {
   font-family: Poppins, sans-serif;
   font-weight: 400;
-  background-color: #FEFDFB;
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
 }
 
 html, body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  margin: 0 auto;
-  justify-content: center;
+  margin: 0;
+}
+
+main {
+  margin: 0 7.5rem;
+  height: 100vh;  
 }
 
 h1 {
   font-weight: 600;
+  /* font-size: 1.5rem; */
 }
 
-/* index page */
+p {
+  font-size: 1.25rem;
+}
+
+@media screen  {
+  
+}
 
