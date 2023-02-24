@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  gap: 6rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2.5rem;  
+  /* height: 100%; */
+}
+
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6rem;
+}
