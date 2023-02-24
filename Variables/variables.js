@@ -1,22 +1,12 @@
-import styled from "styled-components";
-
 export const colors = {
   primary: {
-    yellow: "#F0AA21",
-    orange: "#F97C3F",
-    blue: "#53C1EC",
+    yellow: "var(--primaryYellow)",
+    orange: "var(--primaryOrange)",
+    blue: "var(--primaryBlue)",
   },
-  backgroundWhite: "#FEFDFB",
-  black: "#000000"
+  text: {
+    black: "var(--main-text-color)",
+    gray: "var(--text-gray-color)",
+  },
+  background: "var(--main-background-color)",
 };
-
-export const FlexBox = styled.div`
-  display: flex;
-  flex-direction: ${(props) => props.dir || "column"};
-`;
-
-export const Container = styled(FlexBox)`
-  justify-content: ${(props)=> props.justifyContent};
-  align-items: ${(props)=> props.alignItems};
-  height: ${(props)=> props.height};
-`;
