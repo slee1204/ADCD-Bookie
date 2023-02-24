@@ -29,11 +29,11 @@ export default function Home() {
           </div>
           <Button
             text="Get started"
-            handleClick={() => router.push("/genres")}
+            handleClick={() => router.push("/onboarding")}
           />
         </div>
         <div>
-          <img src={src} />
+          <img src={src} alt="Bookie logo image"  />
         </div>
       </div>
     </main>
