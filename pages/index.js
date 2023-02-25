@@ -4,9 +4,11 @@ import Button from "@/comp/Button";
 import Head from "next/head";
 import styles from "../styles/Home.module.css"
 
+
+
 export default function Home() {
   const router = useRouter();
-  const src = "tobechanged.png"
+  const src = "landing.svg"
 
   return (<>
     <Head>
@@ -21,7 +23,7 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.header}>
             <div className={styles.em}>WELCOME TO</div>
-            <h1 className={styles.heading}>BOOKIE</h1>
+            <img className={styles.logo} src="/logo.svg" alt="bookie logo" />
             <div className={styles.textCont}>
               <p>Find your <span className={styles.em}>next favourite book</span> today!</p>
               <p >Explore a world of new reading possibilities by selecting your favourite book categories on our personalized recommendation website.</p>
@@ -32,8 +34,8 @@ export default function Home() {
             handleClick={() => router.push("/onboarding")}
           />
         </div>
-        <div>
-          <img src={src} alt="Bookie logo image"  />
+        <div className={styles.landingImg}>
+          <img src={src} alt="Bookie landing illustration"  />
         </div>
       </div>
     </main>
