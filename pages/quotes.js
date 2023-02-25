@@ -2,18 +2,16 @@ import { Inter } from "@next/font/google";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Button from "@/comp/Button";
-import styled from "styled-components";
-import { FlexBox, Container } from "@/Variables/variables";
+import Card from "@/comp/Card";
 import Head from "next/head";
 import axios from "axios";
-
+import styles from "../styles/Quotes.module.css";
+import { genres } from "@/public/data/genres";
+import Genre from "@/comp/Genre";
+import QuoteCard from "@/comp/QuoteCard";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const Layout = styled(FlexBox)`
-  height: 100vh;
-  justify-content: center;
-`;
 
 export default function Home() {
   const router = useRouter();
@@ -69,18 +67,30 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <Layout>
-        <Container alignItems="center" justifyContent="center" height="70%">
-          <div className="quote-box">
-            <p id="quote">{quote}</p>
-            <small id="author">- {author}</small>
+      <main className={styles.main}>
+        <div className={styles.container}>
+          <div>
+            <h1>For you</h1>
+            <div className={styles.carousel}>
+              <Card />
+            </div>
           </div>
-        </Container>
+
+          <div className={styles.quoteCont}>
+            <QuoteCard 
+              quote={quote}
+              author={author}
+            />
+          </div>
+        </div>
+
+
+
         <Button
           text="New Quote"
           handleClick={() => {quoteAPI()}}
         />
-      </Layout>
+      </main>
     </>
   );
 }
