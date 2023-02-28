@@ -52,7 +52,7 @@ export default function SearchBar() {
       }).catch(err=>{
       console.log(err)
       })
-      r.push({ pathname: "/quotes", query: searchInput})
+      r.push({ pathname: "/quotes", query: `0=`+searchInput})
   }
 
   }
