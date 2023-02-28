@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { useState } from "react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Icon from "./Icon";
+import axios from "axios";
+import Card from "./Card";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const SearchBarCont = styled.div`
   display: flex;
@@ -27,12 +31,39 @@ width: 20px;
 
 
 export default function SearchBar() {
+  
+  const r = useRouter();
 
   const [searchInput, setSearchInput] = useState("");
+  const [bookData, setBookData] = useState([]);
 
-  const handleInputChange = (e) => {
-    setSearchInput(e.target.value);
-  };
+
+
+  const searchBook=(e)=>{
+    let cat = "";
+    if(e.key === "Enter"){
+      axios.get('https://www.googleapis.com/books/v1/volumes?q=subject:'+searchInput+'&key=AIzaSyAILo6V3o56v_azR9rm8GZVzrBMgLogWDQ&maxResults=40&orderBy=relevance')
+      .then(res=>{
+      setBookData(res.data.items)
+      for (let i = 0; i < res.data.items.length; i++){
+      cat = res.data.items[i].volumeInfo.categories
+      // console.log(cat)
+    }
+      }).catch(err=>{
+      console.log(err)
+      })
+      r.push({ pathname: "/quotes", query: searchInput})
+  }
+
+  }
+
+
+
+
+
+  // const handleInputChange = (e) => {
+  //   setSearchInput(e.target.value);
+  // };
 
   const handleSearch = () => {
     // do something with the search searchInput
@@ -41,11 +72,13 @@ export default function SearchBar() {
 
   return <SearchBarCont>
     <Input
-      type="search"
+      type="text"
       placeholder="Search here..."
-      onChange={handleInputChange}
-      value={searchInput}>
+      onChange={e=>setSearchInput(e.target.value)}
+      value={searchInput}
+      onKeyDown={searchBook}>
     </Input>
+
     {/* <SearchIcon icon={faSearch} size="1x"/> */}
   </SearchBarCont>
 }
