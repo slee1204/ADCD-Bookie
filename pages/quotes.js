@@ -31,7 +31,35 @@ export default function Quotes() {
     if (param == "Action" || param == "action") {
       setGenre("courage")
     } else if (param == "comedy" || param == "Comedy"){
+      setGenre("funny")
+    } else if (param == "drama" || param == "Drama"){
+      setGenre("life")
+    } else if (param == "horror" || param == "Horror"){
       setGenre("happy")
+    } else if (param == "romance" || param == "Romance"){
+      setGenre("love")
+    } else if (param == "thriller" || param == "Thriller"){
+      setGenre("fear")
+    } else if (param == "animation" || param == "Animation"){
+      setGenre("happy")
+    } else if (param == "fiction" || param == "Fiction"){
+      setGenre("imagination")
+    } else if (param == "crime" || param == "Crime"){
+      setGenre("movie")
+    } else if (param == "mysetery" || param == "Mysetery"){
+      setGenre("movie")
+    } else if (param == "musical" || param == "Musical"){
+      setGenre("amazing")
+    } else if (param == "animation" || param == "Animation"){
+      setGenre("dreams")
+    } else if (param == "western" || param == "Western"){
+      setGenre("friendship")
+    } else if (param == "adventure" || param == "Adventure"){
+      setGenre("experience")
+    } else if (param == "documentary" || param == "Documentary"){
+      setGenre("life")
+    } else if (param == "family" || param == "Family"){
+      setGenre("family")
     }
     setCategory(genre)
   }
