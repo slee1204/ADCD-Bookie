@@ -74,17 +74,20 @@ export default function Genres() {
               {bookData.map((o, i) => {
                 return (
                   <Card
-                    key={i}
-                    title={o.volumeInfo.title}
-                    author={o.volumeInfo.authors}
-                    src={o.volumeInfo.imageLinks.smallThumbnail}
-                  />
+                  key={i}
+                  title={o.volumeInfo.title}
+                  author={o.volumeInfo.authors}
+                  src={o.volumeInfo.imageLinks.smallThumbnail}
+                  subtitle={o.volumeInfo.subtitle}
+                  categories={o.volumeInfo.categories}
+                  description={o.volumeInfo.description}
+                  publishedDate={o.volumeInfo.publishedDate}
+                  pageCount={o.volumeInfo.pageCount}
+                />
                 );
               })}
             </div>
           </div>
-
-
         </div>
       </main>
     </>

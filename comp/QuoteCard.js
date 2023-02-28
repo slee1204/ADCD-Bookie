@@ -1,105 +1,78 @@
-import React from "react"
+import React from "react";
 import styled from "styled-components";
 
-const QuoteContainer = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 10px 20px;
-width: 100%;
-max-width: 600px;
-`
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  // max-width: 600px;
+  height: 100%;
+  // max-height: 360px;
+`;
 
-const QuoteMark1 = styled.div`
-font-family: 'Racing Sans One', cursive;
-font-size: 5rem;
-text-align: left;
-width: 100%;
-line-height: 1;
-margin-bottom: -10px;
-`
+const QuoteMark = styled.div`
+  font-family: "Racing Sans One", cursive;
+  font-size: 5rem;
+  width: 100%;
+  margin: 0;
+  height: fit-content;
+  text-align: ${props => props.textAlign}
+`;
 
-const QuoteMark2 = styled.div`
-font-family: 'Racing Sans One', cursive;
-font-size: 5rem;
-text-align: right;
-width: 100%;
-line-height: 1;
-margin-top: 20px
-`
-
-const QuoteBox = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 35px 30px;
-gap: 15px;
-background: #FFFFFF;
-border: 2px solid #131313;
-box-shadow: 3px 3px 0px 1px #FFC149;
-border-radius: 10px;
-height: 100%;
-`
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+  background: var(--main-background-color);
+  border: 2px solid var(--border-color);
+  QuoteContainer-shadow: 3px 3px 0px 1px var(--primaryYellow);
+  border-radius: 10px;
+  height: 100%;
+`;
 
 const Bar = styled.div`
-width: 10px;
-height: 100%;
-background: #FFC149;
-border-radius: 22.1px 0px 0px 22.1px;
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
-`
-const Box = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: flex-start;
-padding: 0px;
-gap: 30px;
-max-width: 520px;
-flex: none;
-order: 1;
-flex-grow: 0;
-width: 100%;
-`
+  width: .7rem;
+  height: 100%;
+  background: var(--primaryYellow);
+  border-radius: 22px 0px 0px 22px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+`;
 
-const QuoteSentence = styled.p`
-width: 90%;
-max-width: 520px;
-overflow-wrap: break-word;
-height: auto;
-`
+const QuoteContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  justify-content: flex-start;
+`;
 
-const QuoteAuthor = styled.p`
-width: 90%;
-max-width: 520px;
-overflow-wrap: break-word;
-height: auto;
-text-align: right;
-`
+const Content = styled.div`
+  width: 100%;
+  text-align: ${props => props.textAlign}
+`;
 
-export default function QuoteCard({ 
-  quote = "Lorem ipsum dolor sit amet consectetur. Blandit quam lacinia erat euismod mi bibendum elementum. Integer laoreet quam est hac parturient in.", 
-  author = "a friend",
-  category = "category"
+export default function QuoteCard({
+  quote = "Lorem ipsum dolor sit amet consectetur. Blandit quam lacinia erat euismod mi bibendum elementum. Integer laoreet quam est hac parturient in.",
+  author = "author",
+  category = "category",
 }) {
-
   return (
-    <QuoteContainer>
-      <QuoteMark1>“</QuoteMark1>
-        <QuoteBox>
-
-            <Bar />
-            <Box>
-              <QuoteSentence>{quote}</QuoteSentence>
-              <QuoteAuthor>- {author}</QuoteAuthor>
-              <QuoteAuthor>- {category}</QuoteAuthor>
-            </Box>
-
-        </QuoteBox>
-      <QuoteMark2>”</QuoteMark2>
-    </QuoteContainer>
-
-)}
+    <Card>
+      <QuoteMark textAlign="left">“</QuoteMark>
+      <Container>
+        <Bar />
+        <QuoteContainer>
+          <Content>{quote}</Content>
+          <Content textAlign="right">- {author}</Content>
+          <Content textAlign="right">- {category}</Content>
+        </QuoteContainer>
+      </Container>
+      <QuoteMark textAlign="right">”</QuoteMark>
+    </Card>
+  );
+}

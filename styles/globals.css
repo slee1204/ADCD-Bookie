@@ -29,6 +29,10 @@ p {
   font-size: 1.25rem;
 }
 
+div {
+  background-color: transparent;
+}
+
 @media screen  {
   
 }
