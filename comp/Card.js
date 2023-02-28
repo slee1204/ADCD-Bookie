@@ -2,6 +2,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "./Icon";
+import QuoteCard from "./QuoteCard";
 
 const Book = styled.div`
   box-sizing: border-box;
@@ -10,17 +11,20 @@ const Book = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 258px;
-  height: 335px;
+  height: fit-content;
   border: 3.10748px solid var(--text-main-color);
   border-radius: 15px;
 `;
 
 const Overlay = styled.div`
   width: 80vw;
-  height: 50vh;
   display: flex;
   flex-direction: column;
   position: absolute;
+  border: solid 1px black;
+  height: fit-content;
+  padding: 2rem;
+  background-color: var(--main-background-color);
 `;
 const ImageCont = styled.div``;
 const InfoCont = styled.div``;
@@ -28,18 +32,18 @@ const IconCont = styled.div`
   align-self: flex-end;
 `;
 const TextCont = styled.div`
-display: flex;
-flex-direction: row;
-width: 100%;
-gap: .5rem;
-`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 0.5rem;
+`;
 
 const FlexBox = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   gap: 2rem;
-`
+`;
 
 export default function Card(props) {
   const [openBook, setOpenBook] = useState(false);
@@ -53,9 +57,13 @@ export default function Card(props) {
         <div>{props.author}</div>
       </Book>
       {openBook && (
-        <Overlay onClick={()=> setOpenBook(false)}>
+        <Overlay onClick={() => setOpenBook(false)}>
           <IconCont>
-            <Icon handleClick={() => setOpenBook(false)} size="2x" icon={faClose} />
+            <Icon
+              handleClick={() => setOpenBook(false)}
+              size="2x"
+              icon={faClose}
+            />
           </IconCont>
           <FlexBox>
             <Book>
@@ -89,6 +97,7 @@ export default function Card(props) {
               </div>
             </InfoCont>
           </FlexBox>
+          <QuoteCard />
         </Overlay>
       )}
     </>
