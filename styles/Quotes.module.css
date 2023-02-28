@@ -7,6 +7,9 @@
 .container {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  flex-grow: 0.8fr;
+
 
 }
 
@@ -21,4 +24,11 @@
   justify-content: center;
   width: 100%;
   max-height: fit-content;
+  flex-grow: 0.8fr;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.125rem;
 }

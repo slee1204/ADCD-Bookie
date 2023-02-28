@@ -1,6 +1,33 @@
 import React from "react"
 import styled from "styled-components";
 
+const QuoteContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 10px 20px;
+width: 100%;
+max-width: 600px;
+`
+
+const QuoteMark1 = styled.div`
+font-family: 'Racing Sans One', cursive;
+font-size: 5rem;
+text-align: left;
+width: 100%;
+line-height: 1;
+margin-bottom: -10px;
+`
+
+const QuoteMark2 = styled.div`
+font-family: 'Racing Sans One', cursive;
+font-size: 5rem;
+text-align: right;
+width: 100%;
+line-height: 1;
+margin-top: 20px
+`
+
 const QuoteBox = styled.div`
 display: flex;
 flex-direction: row;
@@ -11,6 +38,7 @@ background: #FFFFFF;
 border: 2px solid #131313;
 box-shadow: 3px 3px 0px 1px #FFC149;
 border-radius: 10px;
+height: 100%;
 `
 
 const Bar = styled.div`
@@ -34,34 +62,44 @@ max-width: 520px;
 flex: none;
 order: 1;
 flex-grow: 0;
+width: 100%;
 `
 
 const QuoteSentence = styled.p`
-width: 100%;
+width: 90%;
 max-width: 520px;
 overflow-wrap: break-word;
 height: auto;
 `
 
 const QuoteAuthor = styled.p`
-width: 100%;
+width: 90%;
 max-width: 520px;
 overflow-wrap: break-word;
 height: auto;
 text-align: right;
 `
 
-export default function QuoteCard({ quote = "Lorem ipsum dolor sit amet consectetur. Blandit quam lacinia erat euismod mi bibendum elementum. Integer laoreet quam est hac parturient in.", author = "a friend"}) {
+export default function QuoteCard({ 
+  quote = "Lorem ipsum dolor sit amet consectetur. Blandit quam lacinia erat euismod mi bibendum elementum. Integer laoreet quam est hac parturient in.", 
+  author = "a friend",
+  category = "category"
+}) {
 
   return (
-      <QuoteBox>
+    <QuoteContainer>
+      <QuoteMark1>“</QuoteMark1>
+        <QuoteBox>
 
-          <Bar />
-          <Box>
-            <QuoteSentence>{quote}</QuoteSentence>
-            <QuoteAuthor>- {author}</QuoteAuthor>
-          </Box>
+            <Bar />
+            <Box>
+              <QuoteSentence>{quote}</QuoteSentence>
+              <QuoteAuthor>- {author}</QuoteAuthor>
+              <QuoteAuthor>- {category}</QuoteAuthor>
+            </Box>
 
-    </QuoteBox>
+        </QuoteBox>
+      <QuoteMark2>”</QuoteMark2>
+    </QuoteContainer>
 
 )}

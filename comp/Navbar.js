@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+
 const NavbarCont = styled.div`
   position: relative;
   height: 90px;
@@ -19,6 +20,12 @@ const Comps = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`
+
+const Logo = styled.img`
+  height: 50%;
+  background-color: transparent;
+  cursor: pointer;
 `
 
 export default function Navbar() {
@@ -37,11 +44,11 @@ export default function Navbar() {
     setSearchInput(e.target.value);
   };
 
-  const logo = "tobechanged.png"
+  const logo = "LOGO.svg"
 
   return <NavbarCont>
     <Comps>
-      <img src={logo} onClick={()=> router.push("/")} />
+      <Logo src={logo} onClick={()=> router.push("/")} />
       <SearchBar handleChange={handleChange} />
     </Comps>
   </NavbarCont>
