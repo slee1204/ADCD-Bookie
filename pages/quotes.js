@@ -6,22 +6,125 @@ import Head from "next/head";
 import axios from "axios";
 import styles from "../styles/Quotes.module.css";
 import QuoteCard from "@/comp/QuoteCard";
+import { genres } from "@/public/data/genres";
 
 
 export default function Quotes() {
   const router = useRouter();
 
-
+  const param = router.query['0'];
 
   const [quote, setQuote] = useState("");
   const [author, setAuthor] = useState("");
-  // const [category, setCategory] = useState("");
+  const [genre, setGenre] = useState("");
+  const [category, setCategory] = useState("");
+
+  // const apiKey = "vX4NrS8rBEKQFAhv62aqYQ==AfpJIs9bXgwLjoh3";
+  // const category = "fear";
+  const limit = "5";
+  const url = `https://api.api-ninjas.com/v1/quotes?category=${category}`;
+  let options = {
+    method: 'GET',
+    headers: { 'x-api-key': 'XviNrEZZkmHOAI5VAkY6WKi51ccgbQZAJRfa1Q1a' }
+  }
+
+  const getCategory = () => {
+    if (param == "Action" || param == "action") {
+      setGenre("courage")
+    } else if (param == "comedy" || param == "Comedy"){
+      setGenre("happy")
+    }
+    setCategory(genre)
+  }
+
+  useEffect(() => {
+    getCategory();
+    }, [param]);
+
+
+  const quoteAPI = async () => {
+    // const res = await axios.get (url, options)
+    // const data = await res.data
+    // console.log(data)
+    // setQuery();
+    let arrayofQuotes = [];
+    // setQuery();
+    try {
+      const data = await axios.get(url, options);
+      console.log(data);
+      arrayofQuotes = data.data[0];
+    } catch (error)
+    {
+      console.log(error);
+    }
+
+    try {
+      setQuote(arrayofQuotes.quote);
+      setAuthor(arrayofQuotes.author);
+      setCategory(arrayofQuotes.category)
+      console.log(category)
+    } catch (error) {
+      console.log(error);
+    }
+
+  };
+
+
+  useEffect(() => {
+    quoteAPI();
+  }, []);
+
+
+  return (
+    <>
+      <Head>
+        <title>Welcome to Bookie</title>
+        <meta name="author" content="Anna Jeong, Sue Lee" />
+        <meta property="og:title" content="MDIA 3190 Final Project" />
+        <meta
+          property="og:description"
+          content="A book recommendation app; Find a book you like"
+        />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+      <main className={styles.main}>
+      <div className={styles.grid}>
+          <div className={styles.container}>
+            <div>
+              <h1>For you</h1>
+              <div className={styles.carousel}>
+                <Card />
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.quoteCont}>
+            <QuoteCard 
+              quote={quote}
+              author={author}
+              category={category}
+            />
+          </div>
+          
+
+        <Button
+          text="New Quote"
+          handleClick={() => {quoteAPI()}}
+        />
+        </div>
+      </main>
+    </>
+  );
+  
+}
+
+
 
   // let query1 = router.query.query;
 
   // const setQuery = () => {
   // console.log(router)
-  // if (query1 == "Action" || "action") {
+  // if (query1 == "0=Action" || "0=action") {
   //   setCategory("courage")
   // } else if (query1 == "comedy" || "Comedy"){
   //   setCategory("funny")
@@ -53,86 +156,3 @@ export default function Quotes() {
   //   setCategory("family")
   // }
   // };
-
-  // const apiKey = "vX4NrS8rBEKQFAhv62aqYQ==AfpJIs9bXgwLjoh3";
-  const category = "fear";
-  const limit = "5";
-  const url = `https://api.api-ninjas.com/v1/quotes?category=${category}`;
-  let options = {
-    method: 'GET',
-    headers: { 'x-api-key': 'XviNrEZZkmHOAI5VAkY6WKi51ccgbQZAJRfa1Q1a' }
-  }
-
-  const quoteAPI = async () => {
-    // const res = await axios.get (url, options)
-    // const data = await res.data
-    // console.log(data)
-
-    let arrayofQuotes = [];
-    setQuery();
-    try {
-      const data = await axios.get(url, options);
-      // console.log(data);
-      arrayofQuotes = data.data[0];
-    } catch (error)
-    {
-      console.log(error);
-    }
-
-    try {
-      setQuote(arrayofQuotes.quote);
-      setAuthor(arrayofQuotes.author);
-    } catch (error) {
-      console.log(error);
-    }
-
-  }
-
-  useEffect(() => {
- 
-    quoteAPI();
-  }, []);
-
-
-  return (
-    <>
-      <Head>
-        <title>Welcome to Bookie</title>
-        <meta name="author" content="Anna Jeong, Sue Lee" />
-        <meta property="og:title" content="MDIA 3190 Final Project" />
-        <meta
-          property="og:description"
-          content="A book recommendation app; Find a book you like"
-        />
-        <link rel="icon" href="/favicon.png" />
-      </Head>
-      <main className={styles.main}>
-      <div className={styles.grid}>
-          <div className={styles.container}>
-            <div>
-              <h1>For you</h1>
-              <div className={styles.carousel}>
-                <Card />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.quoteCont}>
-                <QuoteCard 
-                quote={quote}
-                author={author}
-                category={category}
-                />
-
-          </div>
-
-        <Button
-          text="New Quote"
-          handleClick={() => {quoteAPI()}}
-        />
-        </div>
-      </main>
-    </>
-  );
-  
-}
