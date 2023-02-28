@@ -6,7 +6,6 @@ import Head from "next/head";
 import axios from "axios";
 import styles from "../styles/Quotes.module.css";
 import QuoteCard from "@/comp/QuoteCard";
-import { genres } from "@/public/data/genres";
 
 
 export default function Quotes() {
