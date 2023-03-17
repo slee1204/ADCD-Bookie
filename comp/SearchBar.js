@@ -53,6 +53,7 @@ export default function SearchBar() {
       console.log(err)
       })
       r.push({ pathname: "/quotes", query: `0=`+searchInput})
+      setSearchInput("")
   }
 
   }
