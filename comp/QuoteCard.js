@@ -69,7 +69,7 @@ export default function QuoteCard({
         <QuoteContainer>
           <Content>{quote}</Content>
           <Content textAlign="right">- {author}</Content>
-          <Content textAlign="right">- {category}</Content>
+          {/* <Content textAlign="right">- {category}</Content> */}
         </QuoteContainer>
       </Container>
       <QuoteMark textAlign="right">”</QuoteMark>
