@@ -8,6 +8,7 @@ import Genre from "@/comp/Genre";
 import Head from "next/head";
 
 export default function Results() {
+
   const router = useRouter();
   const [genre, setGenre] = useState("");
   const [forYouData, setForYouData] = useState([]);
@@ -65,7 +66,20 @@ export default function Results() {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.container}>
+        <div className={styles.container}>        
+        <div>
+          <h1>Discover Other Genres </h1>
+          <div className={styles.carousel}>
+            {genres &&
+              genres.map((o, i) => (
+                <Genre
+                  key={i}
+                  handleClick={() => chooseGenre(o.query)}
+                  text={o.title}
+                />
+              ))}
+          </div>
+        </div>
           <h1>For you</h1>
           <div className={styles.carousel}>
             {forYouData.map((o, i) => {
@@ -105,19 +119,7 @@ export default function Results() {
             })}
           </div>
         </div>
-        <div className={styles.container}>
-          <h1>Discover Other Genres </h1>
-          <div className={styles.carousel}>
-            {genres &&
-              genres.map((o, i) => (
-                <Genre
-                  key={i}
-                  handleClick={() => chooseGenre(o.query)}
-                  text={o.title}
-                />
-              ))}
-          </div>
-        </div>
+
         {/* 
     <div>
       <input
