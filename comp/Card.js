@@ -2,7 +2,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "./Icon";
-import QuoteCard from "./QuoteCard";
+
 
 const Book = styled.div`
   box-sizing: border-box;
