@@ -23,7 +23,7 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.header}>
             <div className={styles.em}>WELCOME TO</div>
-            <img className={styles.logo} src="/logo.svg" alt="bookie logo" />
+            <img className={styles.logo} src="/LOGO.svg" alt="bookie logo" />
             <div className={styles.textCont}>
               <p>Find your <span className={styles.em}>next favourite book</span> today!</p>
               <p >Explore a world of new reading possibilities by selecting your favourite book categories on our personalized recommendation website.</p>

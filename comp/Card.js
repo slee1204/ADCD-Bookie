@@ -2,7 +2,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "./Icon";
-import QuoteCard from "./QuoteCard";
+
 
 const Book = styled.div`
   box-sizing: border-box;
@@ -44,6 +44,9 @@ const FlexBox = styled.div`
   width: 100%;
   gap: 2rem;
 `;
+
+const QuoteBox = styled.div`
+`
 
 export default function Card(props) {
   const [openBook, setOpenBook] = useState(false);
@@ -95,9 +98,14 @@ export default function Card(props) {
                 <div>Description: </div>
                 <div>{props.description}</div>
               </div>
+              
             </InfoCont>
           </FlexBox>
-          <QuoteCard />
+              <QuoteBox>
+                <div>"{props.quote}"</div>
+                <div>- by {props.quoteAuthor}</div>
+                <div>{props.quoteCategory}</div>
+              </QuoteBox> 
         </Overlay>
       )}
     </>
