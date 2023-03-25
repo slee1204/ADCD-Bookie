@@ -11,68 +11,75 @@ import QuoteCard from "@/comp/QuoteCard";
 export default function Quotes() {
   const router = useRouter();
 
+  const param = router.query['0'];
 
 
   const [quote, setQuote] = useState("");
   const [author, setAuthor] = useState("");
-  // const [category, setCategory] = useState("");
-
-  // let query1 = router.query.query;
-
-  // const setQuery = () => {
-  // console.log(router)
-  // if (query1 == "Action" || "action") {
-  //   setCategory("courage")
-  // } else if (query1 == "comedy" || "Comedy"){
-  //   setCategory("funny")
-  // } else if (query1 == "Drama"){
-  //   setCategory("life")
-  // } else if (query1 == "Horror"){
-  //   setCategory("fear")
-  // } else if (query1 == "Romance"){
-  //   setCategory("love")
-  // } else if (query1 == "Thriller"){
-  //   setCategory("fear")
-  // } else if (query1 == "Animation"){
-  //   setCategory("happy")
-  // } else if (query1 == "Fiction"){
-  //   setCategory("imagination")
-  // } else if (query1 == "Crime"){
-  //   setCategory("movie")
-  // } else if (query1 == "Mystery"){
-  //   setCategory("movie")
-  // } else if (query1 == "Musical"){
-  //   setCategory("amazing")
-  // } else if (query1 == "Western"){
-  //   setCategory("friendship")
-  // } else if (query1 == "Adventure"){
-  //   setCategory("experience")
-  // } else if (query1 == "Documentary"){
-  //   setCategory("life")
-  // } else if (query1 == "Family"){
-  //   setCategory("family")
-  // }
-  // };
+  const [genre, setGenre] = useState("");
+  const [category, setCategory] = useState("");
 
   // const apiKey = "vX4NrS8rBEKQFAhv62aqYQ==AfpJIs9bXgwLjoh3";
-  const category = "fear";
+  // const category = "fear";
   const limit = "5";
-  const url = `https://api.api-ninjas.com/v1/quotes?category=${category}`;
+  const url = `https://api.api-ninjas.com/v1/quotes?category=${genre}`;
   let options = {
     method: 'GET',
     headers: { 'x-api-key': 'XviNrEZZkmHOAI5VAkY6WKi51ccgbQZAJRfa1Q1a' }
   }
 
+  const getCategory = () => {
+    if (param == "Action" || param == "action") {
+      setGenre("courage")
+    } else if (param == "comedy" || param == "Comedy"){
+      setGenre("funny")
+    } else if (param == "drama" || param == "Drama"){
+      setGenre("life")
+    } else if (param == "horror" || param == "Horror"){
+      setGenre("fear")
+    } else if (param == "romance" || param == "Romance"){
+      setGenre("love")
+    } else if (param == "thriller" || param == "Thriller"){
+      setGenre("fear")
+    } else if (param == "animation" || param == "Animation"){
+      setGenre("happy") // not working
+    } else if (param == "fiction" || param == "Fiction"){
+      setGenre("imagination")
+    } else if (param == "crime" || param == "Crime"){
+      setGenre("movie") // not working
+    } else if (param == "mystery" || param == "Mystery"){
+      setGenre("movie") // not working
+    } else if (param == "musical" || param == "Musical"){
+      setGenre("amazing")
+    } else if (param == "animation" || param == "Animation"){
+      setGenre("dreams") // not working
+    } else if (param == "western" || param == "Western"){
+      setGenre("friendship")
+    } else if (param == "adventure" || param == "Adventure"){
+      setGenre("experience")
+    } else if (param == "documentary" || param == "Documentary"){
+      setGenre("life")
+    } else if (param == "family" || param == "Family"){
+      setGenre("family")
+    }
+  }
+
+  useEffect(() => {
+    getCategory();
+    }, [param]);
+
+
   const quoteAPI = async () => {
+    getCategory(category);
     // const res = await axios.get (url, options)
     // const data = await res.data
     // console.log(data)
-
+    // setQuery();
     let arrayofQuotes = [];
-    setQuery();
+    // setQuery();
     try {
       const data = await axios.get(url, options);
-      // console.log(data);
+      console.log(data);
       arrayofQuotes = data.data[0];
     } catch (error)
     {
@@ -82,16 +89,18 @@ export default function Quotes() {
     try {
       setQuote(arrayofQuotes.quote);
       setAuthor(arrayofQuotes.author);
+      setCategory(arrayofQuotes.category)
+      console.log(category)
     } catch (error) {
       console.log(error);
     }
 
-  }
+  };
 
-  useEffect(() => {
- 
+  useEffect(()=>{
+    // getCategory();
     quoteAPI();
-  }, []);
+  },[genre])
 
 
   return (
@@ -118,13 +127,13 @@ export default function Quotes() {
           </div>
 
           <div className={styles.quoteCont}>
-                <QuoteCard 
-                quote={quote}
-                author={author}
-                category={category}
-                />
-
+            <QuoteCard 
+              quote={quote}
+              author={author}
+              category={category}
+            />
           </div>
+          
 
         <Button
           text="New Quote"

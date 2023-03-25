@@ -17,8 +17,10 @@ const KeywordCont = styled.button`
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  width: 100%;
   max-width: 167px;
-  max-height: 167px;
+  height: 100%;
+  max-height: 80px;
   padding: 0.5rem;
   border: 2px solid ${styles.border};
   border-radius: 10px;

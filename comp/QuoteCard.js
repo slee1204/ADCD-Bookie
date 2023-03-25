@@ -6,9 +6,9 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  // max-width: 600px;
+  min-width: 460px;
   height: 100%;
-  // max-height: 360px;
+  min-height: 420px;
 `;
 
 const QuoteMark = styled.div`
@@ -69,7 +69,7 @@ export default function QuoteCard({
         <QuoteContainer>
           <Content>{quote}</Content>
           <Content textAlign="right">- {author}</Content>
-          <Content textAlign="right">- {category}</Content>
+          {/* <Content textAlign="right">- {category}</Content> */}
         </QuoteContainer>
       </Container>
       <QuoteMark textAlign="right">”</QuoteMark>
