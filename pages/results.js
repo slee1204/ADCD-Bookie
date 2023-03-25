@@ -49,8 +49,91 @@ export default function Results() {
   }, [genre]);
 
   const chooseGenre = (genre) => {
-    router.push({ pathname: "/genres", query: { genre: genre } });
+    router.push({ pathname: "/results", query: { genre: genre } });
   };
+
+      //Fetch Quote API
+      const [quote, setQuote] = useState("");
+      const [quoteAuthor, setQuoteAuthor] = useState("");
+      const [quoteCategories, setQuoteCategories] = useState("");
+      const [quoteData, setQuoteData] = useState([]);
+  
+      const param = router.query['genre'];
+      console.log(param)
+      const getCategory = async () => {
+        if (param == "Action" || param == "action") {
+          setQuoteCategories("courage")
+        } else if (param == "comedy" || param == "Comedy"){
+          setQuoteCategories("funny")
+        } else if (param == "drama" || param == "Drama"){
+          setQuoteCategories("life")
+        } else if (param == "horror" || param == "Horror"){
+          setQuoteCategories("fear")
+        } else if (param == "romance" || param == "Romance"){
+          setQuoteCategories("love")
+        } else if (param == "thriller" || param == "Thriller"){
+          setQuoteCategories("fear")
+        } else if (param == "animation" || param == "Animation"){
+          setQuoteCategories("happy") // not working
+        } else if (param == "fiction" || param == "Fiction"){
+          setQuoteCategories("imagination")
+        } else if (param == "crime" || param == "Crime"){
+          setQuoteCategories("movie") // not working
+        } else if (param == "mystery" || param == "Mystery"){
+          setQuoteCategories("movie") // not working
+        } else if (param == "musical" || param == "Musical"){
+          setQuoteCategories("amazing")
+        } else if (param == "animation" || param == "Animation"){
+          setQuoteCategories("dreams") // not working
+        } else if (param == "western" || param == "Western"){
+          setQuoteCategories("friendship")
+        } else if (param == "adventure" || param == "Adventure"){
+          setQuoteCategories("experience")
+        } else if (param == "documentary" || param == "Documentary"){
+          setQuoteCategories("life")
+        } else if (param == "family" || param == "Family"){
+          setQuoteCategories("family")
+        }
+      }
+  
+      useEffect(() => {
+        getCategory();
+      }, [param]);
+  
+      const fetchQuoteData = async () => {
+        let options = {
+          method: 'GET',
+          headers: { 'x-api-key': 'XviNrEZZkmHOAI5VAkY6WKi51ccgbQZAJRfa1Q1a' }
+        }
+        const quoteResults = await axios.get(
+          `https://api.api-ninjas.com/v1/quotes?category=${quoteCategories}`, options
+        );
+        try {
+
+          axios.all([quoteResults]).then(
+            axios.spread((...allData)=>{
+              const checkQuote = allData[0];
+              const forYouQuote = allData[0].data;
+    
+              setQuoteData(forYouQuote);
+              setQuote(forYouQuote[0].quote);
+              setQuoteAuthor(forYouQuote[0].author);
+              setQuoteCategories(forYouQuote[0].category);
+    
+              console.log(checkQuote)
+            }))
+            res.status(200).json(data)
+        } catch (error) {
+          console.log(error)
+        }
+      };
+
+      
+      useEffect(() => {
+        fetchQuoteData();
+      }, [quoteCategories]);
+  
+  
 
   return (
     <>
@@ -94,6 +177,9 @@ export default function Results() {
                   description={o.volumeInfo.description}
                   publishedDate={o.volumeInfo.publishedDate}
                   pageCount={o.volumeInfo.pageCount}
+                  quote={quote}
+                  quoteAuthor={quoteAuthor}
+                  quoteCategory={quoteCategories}
                 />
               );
             })}
