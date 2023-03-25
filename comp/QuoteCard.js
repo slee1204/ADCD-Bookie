@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Card = styled.div`
+const CardBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +20,7 @@ const QuoteMark = styled.div`
   text-align: ${props => props.textAlign}
 `;
 
-const Container = styled.div`
+const BigContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 2rem;
@@ -56,23 +56,19 @@ const Content = styled.div`
   text-align: ${props => props.textAlign}
 `;
 
-export default function QuoteCard({
-  quote = "Lorem ipsum dolor sit amet consectetur. Blandit quam lacinia erat euismod mi bibendum elementum. Integer laoreet quam est hac parturient in.",
-  author = "author",
-  category = "category",
-}) {
+export default function QuoteCard(props) {
   return (
-    <Card>
+    <CardBox>
       <QuoteMark textAlign="left">“</QuoteMark>
-      <Container>
+      <BigContainer>
         <Bar />
         <QuoteContainer>
-          <Content>{quote}</Content>
-          <Content textAlign="right">- {author}</Content>
-          {/* <Content textAlign="right">- {category}</Content> */}
+          <Content>{props.quote}</Content>
+          <Content textAlign="right">- {props.quoteAuthor}</Content>
+          <Content textAlign="right">- {props.quoteCategory}</Content>
         </QuoteContainer>
-      </Container>
+      </BigContainer>
       <QuoteMark textAlign="right">”</QuoteMark>
-    </Card>
+    </CardBox>
   );
 }
