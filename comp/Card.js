@@ -45,6 +45,9 @@ const FlexBox = styled.div`
   gap: 2rem;
 `;
 
+const QuoteBox = styled.div`
+`
+
 export default function Card(props) {
   const [openBook, setOpenBook] = useState(false);
   return (
@@ -95,9 +98,14 @@ export default function Card(props) {
                 <div>Description: </div>
                 <div>{props.description}</div>
               </div>
+              
             </InfoCont>
           </FlexBox>
-          <QuoteCard />
+              <QuoteBox>
+                <div>"{props.quote}"</div>
+                <div>- by {props.quoteAuthor}</div>
+                <div>{props.quoteCategory}</div>
+              </QuoteBox> 
         </Overlay>
       )}
     </>
