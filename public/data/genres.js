@@ -2,7 +2,7 @@ export const genres = [
   {
     title: "Action",
     query: "action",
-    src: ".png",
+    src: "",
     cat: "courage",
   },
   {
