@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "./Icon";
 
-
 const Book = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -48,11 +47,35 @@ const FlexBox = styled.div`
 const QuoteBox = styled.div`
 `
 
+
 export default function Card(props) {
-  const [openBook, setOpenBook] = useState(false);
+  const [openBook, setOpenBook] = useState(false); // open overlay
+  const [hideOverflow, setHideOverflow] = useState(false); // prevent scroll
+  const handleOverlay = () => {
+    if (!openBook && !hideOverflow){
+    setOpenBook(true);
+    setHideOverflow(true);
+    document.body.style.overflow = 'hidden';
+
+    } else if (openBook && hideOverflow){
+      setOpenBook(false);
+      setHideOverflow(false);
+      document.body.style.overflow = 'auto';
+    } else if (!openBook && !hideOverflow){
+      setOpenBook(false);
+      setHideOverflow(false);
+      document.body.style.overflow = 'auto';
+    } else if (openBook && !hideOverflow){
+      setOpenBook(false);
+      setHideOverflow(false);
+      document.body.style.overflow = 'auto';
+    }
+  };
+  
+  
   return (
     <>
-      <Book onClick={setOpenBook}>
+      <Book onClick={handleOverlay}>
         <div>
           <img src={props.src} />
         </div>
@@ -60,10 +83,10 @@ export default function Card(props) {
         <div>{props.author}</div>
       </Book>
       {openBook && (
-        <Overlay onClick={() => setOpenBook(false)}>
+        <Overlay onClick={handleOverlay}>
           <IconCont>
             <Icon
-              handleClick={() => setOpenBook(false)}
+              handleClick={handleOverlay}
               size="2x"
               icon={faClose}
             />
