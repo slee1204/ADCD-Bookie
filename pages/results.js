@@ -8,7 +8,6 @@ import Genre from "@/comp/Genre";
 import Head from "next/head";
 
 export default function Results() {
-
   const router = useRouter();
   const [genre, setGenre] = useState("");
   const [forYouData, setForYouData] = useState([]);
@@ -52,88 +51,94 @@ export default function Results() {
     router.push({ pathname: "/results", query: { genre: genre } });
   };
 
-      //Fetch Quote API
-      const [quote, setQuote] = useState("");
-      const [quoteAuthor, setQuoteAuthor] = useState("");
-      const [quoteCategories, setQuoteCategories] = useState("");
-      const [quoteData, setQuoteData] = useState([]);
-  
-      const param = router.query['genre'];
-      console.log(param)
-      const getCategory = async () => {
-        if (param == "Action" || param == "action") {
-          setQuoteCategories("courage")
-        } else if (param == "comedy" || param == "Comedy"){
-          setQuoteCategories("funny")
-        } else if (param == "drama" || param == "Drama"){
-          setQuoteCategories("life")
-        } else if (param == "horror" || param == "Horror"){
-          setQuoteCategories("fear")
-        } else if (param == "romance" || param == "Romance"){
-          setQuoteCategories("love")
-        } else if (param == "thriller" || param == "Thriller"){
-          setQuoteCategories("fear")
-        } else if (param == "animation" || param == "Animation"){
-          setQuoteCategories("happy") // not working
-        } else if (param == "fiction" || param == "Fiction"){
-          setQuoteCategories("imagination")
-        } else if (param == "crime" || param == "Crime"){
-          setQuoteCategories("movie") // not working
-        } else if (param == "mystery" || param == "Mystery"){
-          setQuoteCategories("movie") // not working
-        } else if (param == "musical" || param == "Musical"){
-          setQuoteCategories("amazing")
-        } else if (param == "animation" || param == "Animation"){
-          setQuoteCategories("dreams") // not working
-        } else if (param == "western" || param == "Western"){
-          setQuoteCategories("friendship")
-        } else if (param == "adventure" || param == "Adventure"){
-          setQuoteCategories("experience")
-        } else if (param == "documentary" || param == "Documentary"){
-          setQuoteCategories("life")
-        } else if (param == "family" || param == "Family"){
-          setQuoteCategories("family")
-        }
-      }
-  
-      useEffect(() => {
-        getCategory();
-      }, [param]);
-  
-      const fetchQuoteData = async () => {
-        let options = {
-          method: 'GET',
-          headers: { 'x-api-key': 'XviNrEZZkmHOAI5VAkY6WKi51ccgbQZAJRfa1Q1a' }
-        }
-        const quoteResults = await axios.get(
-          `https://api.api-ninjas.com/v1/quotes?category=${quoteCategories}`, options
-        );
-        try {
+  //Fetch Quote API
+  const [quote, setQuote] = useState("");
+  const [quoteAuthor, setQuoteAuthor] = useState("");
+  const [quoteCategories, setQuoteCategories] = useState("");
+  // const [quoteData, setQuoteData] = useState([]);
 
-          axios.all([quoteResults]).then(
-            axios.spread((...allData)=>{
-              const checkQuote = allData[0];
-              const forYouQuote = allData[0].data;
-    
-              setQuoteData(forYouQuote);
-              setQuote(forYouQuote[0].quote);
-              setQuoteAuthor(forYouQuote[0].author);
-              setQuoteCategories(forYouQuote[0].category);
-    
-              console.log(checkQuote)
-            }))
-            res.status(200).json(data)
-        } catch (error) {
-          console.log(error)
-        }
-      };
+  const param = router.query["genre"];
+  console.log(param);
+  const getCategory = async () => {
+    if (param == "Action" || param == "action") {
+      setQuoteCategories("courage");
+    } else if (param == "comedy" || param == "Comedy") {
+      setQuoteCategories("funny");
+    } else if (param == "drama" || param == "Drama") {
+      setQuoteCategories("life");
+    } else if (param == "horror" || param == "Horror") {
+      setQuoteCategories("fear");
+    } else if (param == "romance" || param == "Romance") {
+      setQuoteCategories("love");
+    } else if (param == "thriller" || param == "Thriller") {
+      setQuoteCategories("fear");
+    } else if (param == "animation" || param == "Animation") {
+      setQuoteCategories("happy"); // not working
+    } else if (param == "fiction" || param == "Fiction") {
+      setQuoteCategories("imagination");
+    } else if (param == "crime" || param == "Crime") {
+      setQuoteCategories("movie"); // not working
+    } else if (param == "mystery" || param == "Mystery") {
+      setQuoteCategories("movie"); // not working
+    } else if (param == "musical" || param == "Musical") {
+      setQuoteCategories("amazing");
+    } else if (param == "animation" || param == "Animation") {
+      setQuoteCategories("dreams"); // not working
+    } else if (param == "western" || param == "Western") {
+      setQuoteCategories("friendship");
+    } else if (param == "adventure" || param == "Adventure") {
+      setQuoteCategories("experience");
+    } else if (param == "documentary" || param == "Documentary") {
+      setQuoteCategories("life");
+    } else if (param == "family" || param == "Family") {
+      setQuoteCategories("family");
+    }
+  };
 
-      
-      useEffect(() => {
-        fetchQuoteData();
-      }, [quoteCategories]);
-  
-  
+  useEffect(() => {
+    getCategory();
+  }, [param]);
+
+  const fetchQuoteData = async () => {
+    let options = {
+      method: "GET",
+      headers: { "x-api-key": "XviNrEZZkmHOAI5VAkY6WKi51ccgbQZAJRfa1Q1a" },
+    };
+    const quoteResults = await axios.get(
+      `https://api.api-ninjas.com/v1/quotes?category=${quoteCategories}&limit=10`,
+      options
+    );
+    let arrayofData = [];
+    const qresult = quoteResults.data;
+    // console.log(qresult);
+    // arrayofData = qresult.data;
+    arrayofData.push(qresult[0])
+    console.log(arrayofData);
+    try {
+      axios.all([quoteResults]).then(
+        axios.spread((...allData) => {
+          // const checkQuote = allData[0];
+          // const forYouQuote = allData[0].data;
+
+          // setQuoteData(forYouQuote);
+          for (var i = 0; i < arrayofData.length; i++) {
+            setQuote(arrayofData[i].quote);
+            setQuoteAuthor(arrayofData[i].author);
+            setQuoteCategories(arrayofData[i].category);
+          }
+
+          // console.log(checkQuote)
+        })
+      );
+      // res.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchQuoteData();
+  }, [quoteCategories]);
 
   return (
     <>
@@ -149,20 +154,20 @@ export default function Results() {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.container}>        
-        <div>
-          <h1>Discover Other Genres </h1>
-          <div className={styles.carousel}>
-            {genres &&
-              genres.map((o, i) => (
-                <Genre
-                  key={i}
-                  handleClick={() => chooseGenre(o.query)}
-                  text={o.title}
-                />
-              ))}
+        <div className={styles.container}>
+          <div>
+            <h1>Discover Other Genres </h1>
+            <div className={styles.carousel}>
+              {genres &&
+                genres.map((o, i) => (
+                  <Genre
+                    key={i}
+                    handleClick={() => chooseGenre(o.query)}
+                    text={o.title}
+                  />
+                ))}
+            </div>
           </div>
-        </div>
           <h1>For you</h1>
           <div className={styles.carousel}>
             {forYouData.map((o, i) => {
