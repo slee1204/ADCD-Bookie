@@ -1,6 +1,6 @@
 # Bookie
 ## Project Description
-Bookie is a web-app, created by [Next.js](https://nextjs.org/), that allow users to get book suggestions based on the selection of genre and inspirational quote matched with the genre.
+Bookie is a web-app, created by [Next.js](https://nextjs.org/), that allows users to get book suggestions based on the selection of genre and inspirational quote matched with the genre.
 
 ## API
 - [GoogleBooks] (https://developers.google.com/books/docs/v1/getting_started)
@@ -23,10 +23,15 @@ Bookie is a web-app, created by [Next.js](https://nextjs.org/), that allow users
 3. In terminal, move to your app folder and install dependencies:
     ```
     npm i styled-components
+
     npm i axios
+
     npm i --save @fortawesome/fontawesome-svg-core
+
     npm i --save @fortawesome/free-solid-svg-icons
+
     npm i --save @fortawesome/free-regular-svg-icons
+    
     npm i --save @fortawesome/react-fontawesome@latest
 
     ```
