@@ -16,14 +16,20 @@ const Book = styled.div`
 `;
 
 const Overlay = styled.div`
-  width: 80vw;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  border: solid 1px black;
-  height: fit-content;
-  padding: 2rem;
-  background-color: var(--main-background-color);
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 60vw;
+height: 70vh;
+justify-content: center;
+align-items: center;
+display: flex;
+flex-direction: column;
+border: solid 1px black;
+padding: 2rem;
+background-color: var(--main-background-color);
+z-index: 9999;
 `;
 const ImageCont = styled.div``;
 const InfoCont = styled.div``;
