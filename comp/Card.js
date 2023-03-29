@@ -8,12 +8,14 @@ const Book = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: flex-start;
-  width: 258px;
-  height: fit-content;
-  border: 3.10748px solid var(--text-main-color);
-  border-radius: 15px;
+  width: 200px;
+  height: 320px;
+  padding: 0 0.5rem 0 1rem;
+  border: 2.10748px solid var(--main-text-color);
+  box-shadow: 3px 4px 0px 1px var(--primaryOrange);
+  border-radius: 10px;
 `;
 
 const BookTitle = styled.h1`
@@ -28,7 +30,11 @@ const BookAuthor = styled.h3`
 font-weight: 400;
 font-style: italic;
 `
-
+const MiniThumbnail = styled.img`
+min-width: 100%;
+width: 100px;
+max-height: 150px;
+`
 
 
 const Overlay = styled.div`
@@ -49,8 +55,13 @@ z-index: 9999;
 border-radius: 10px;
 overflow: scroll;
 padding-top: 2rem;
+box-shadow: 3px 3px 0px 1px var(--primary-yellow);
 `;
-const ImageCont = styled.div``;
+const ImageCont = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+`;
 const InfoCont = styled.div`
 gap: 2rem;
 
@@ -71,17 +82,8 @@ const FlexBox = styled.div`
   flex-direction: row;
   width: 100%;
   gap: 2rem;
-`;
-
-const Divider = styled.div`
-width: 100%;
-height: .5rem;
-background: var(--primaryYellow);
-order: 0;
-align-self: stretch;
-flex-grow: 0;
-border-radius: 50px 50px 0px 0px;
 `
+
 const styles = {
   border: colors.text.black,
   boxShadow: {
@@ -105,6 +107,22 @@ width: 70%;
 padding: 2rem 2rem 2rem 0;
 `
 const QuoteBox = styled.div`
+`
+
+const Quote = styled.div`
+font-family: 'Playfair Display', serif;
+font-style: italic;
+font-size: 1.2rem;
+font-weight: 600;
+margin-bottom: 1rem;
+`
+
+const Quote2 = styled.div`
+font-family: 'Playfair Display', serif;
+font-style: italic;
+font-size: 1rem;
+font-weight: 400;
+text-align: right;
 `
 
 export default function Card(props) {
@@ -135,11 +153,13 @@ export default function Card(props) {
   return (
     <>
       <Book onClick={handleOverlay}>
-        <div>
-          <img src={props.src} />
-        </div>
-        <div>{props.title}</div>
-        <div>{props.author}</div>
+        <ImageCont>
+          <MiniThumbnail src={props.src} />
+        </ImageCont>
+        <InfoCont>
+        <h3>{props.title}</h3>
+        <span> by {props.author}</span>
+        </InfoCont>
       </Book>
       {openBook && (
         <Overlay onClick={handleOverlay}>
@@ -151,11 +171,11 @@ export default function Card(props) {
             />
           </IconCont>
           <FlexBox>
-            <Book>
-              <div>
-                <img src={props.src} />
-              </div>
-            </Book>
+            <div>
+              <ImageCont>
+                <MiniThumbnail src={props.src} />
+              </ImageCont>
+            </div>
             <InfoCont>
               <BookTitle>{props.title}</BookTitle>
               <BookSubtitle>{props.subtitle}</BookSubtitle>
@@ -174,12 +194,14 @@ export default function Card(props) {
             </InfoCont>
             
           </FlexBox>
-          <Divider />
-              <QuoteBox>
-                <div>"{props.quote}"</div>
-                <div>- by {props.quoteAuthor}</div>
-                <div>{props.quoteCategory}</div>
+          <DescBox>
+            <QuoteBox>
+                <Quote>"{props.quote}"</Quote>
+                <Quote2>- by {props.quoteAuthor}</Quote2>
               </QuoteBox> 
+          </DescBox>
+
+              
         </Overlay>
       )}
     </>

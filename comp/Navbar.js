@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 const NavbarCont = styled.div`
   position: relative;
   height: 90px;
-  width: 100vw;
+  width: 100%;
   background-color: ${colors.primary.yellow};
   justify-content: center;
   align-items: center;
