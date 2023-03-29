@@ -54,7 +54,6 @@ export default function Results() {
   const [quote, setQuote] = useState("");
   const [quoteAuthor, setQuoteAuthor] = useState("");
   const [quoteCategories, setQuoteCategories] = useState("");
-  // const [quoteData, setQuoteData] = useState([]);
 
   const param = router.query["genre"];
   console.log(param);
@@ -109,16 +108,18 @@ export default function Results() {
     );
     let arrayOfData = [];
     const res = quoteResults.data;
-    arrayOfData.push(res[0])
+    arrayOfData.push(res[0]);
     console.log(arrayOfData);
     try {
       for (var i = 0; i < arrayOfData.length; i++) {
-
         if (arrayOfData[i].quote !== undefined) {
           setQuote(arrayOfData[i].quote);
         }
         if (arrayOfData[i].author !== undefined) {
           setQuoteAuthor(arrayOfData[i].author);
+        } else {
+          setQuoteAuthor("Unknown");
+          setQuote("Unknown")
         }
       }
     } catch (error) {
@@ -144,19 +145,6 @@ export default function Results() {
       </Head>
       <main className={styles.main}>
         <div className={styles.container}>
-          <div>
-            <h1 className="h1">Discover Other Genres</h1>
-            <div className={styles.carousel}>
-              {genres &&
-                genres.map((o, i) => (
-                  <Genre
-                    key={i}
-                    handleClick={() => chooseGenre(o.query)}
-                    text={o.title}
-                  />
-                ))}
-            </div>
-          </div>
           <h1>For you</h1>
           <div className={styles.carouselBotton}>
             {forYouData.map((o, i) => {
@@ -177,6 +165,19 @@ export default function Results() {
                 />
               );
             })}
+          </div>
+        </div>
+        <div className={styles.container}>
+          <h1 className="h1">Discover Other Genres</h1>
+          <div className={styles.carousel}>
+            {genres &&
+              genres.map((o, i) => (
+                <Genre
+                  key={i}
+                  handleClick={() => chooseGenre(o.query)}
+                  text={o.title}
+                />
+              ))}
           </div>
         </div>
         <div className={styles.container}>
