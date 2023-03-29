@@ -46,7 +46,7 @@ export default function Navbar() {
 
   const logo = "LOGO.svg"
 
-  return <NavbarCont>
+  return <NavbarCont id ="navbar">
     <Comps>
       <Logo src={logo} onClick={()=> router.push("/")} />
     </Comps>
