@@ -14,7 +14,17 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: space-between;
+  justify-content: flex-start;
+  align-items: space-around;
+  gap: 1rem;
+}
 
+.carouselBotton {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: space-around;
+  gap: 2rem;
+  line-height: 1.5rem;
 }

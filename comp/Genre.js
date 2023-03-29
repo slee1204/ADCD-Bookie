@@ -21,24 +21,24 @@ const KeywordCont = styled.button`
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 167px;
+  width: 80%;
+  max-width: 160px;
   height: 100%;
-  // max-height: 80px;
+  max-height: 60px;
   padding: 0.5rem;
   border: 2px solid ${styles.border};
   border-radius: 10px;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 18px;
   line-height: 24px;
   box-shadow: 3px 3px 0px 1px ${styles.boxShadow.default};
   cursor: pointer;
-  flex: 1 0 167px;
+  flex: 0.7 0 160px;
   order: 0;
   flex-grow: 0;
 
   :hover {
-    font-weight: 600;
+    font-weight: 700;
     box-shadow: 3px 3px 0px 1px ${styles.boxShadow.hover};
   }
 `;
