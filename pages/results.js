@@ -12,7 +12,6 @@ export default function Results() {
   const [genre, setGenre] = useState("");
   const [forYouData, setForYouData] = useState([]);
   const [popularData, setPopularData] = useState([]);
-  const maxNum = 10;
 
   const fetchData = async () => {
     const apiKey = "AIzaSyAQ69YB558lrwgkjXDixSDKwzUv8HaW9e0";
@@ -152,7 +151,6 @@ export default function Results() {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-
       <main className={styles.main}>
         <div className={styles.container}>
           <div>
@@ -205,26 +203,14 @@ export default function Results() {
                   description={o.volumeInfo.description}
                   publishedDate={o.volumeInfo.publishedDate}
                   pageCount={o.volumeInfo.pageCount}
+                  quote={quote}
+                  quoteAuthor={quoteAuthor}
+                  quoteCategory={quoteCategories}
                 />
               );
             })}
           </div>
         </div>
-
-        {/* 
-    <div>
-      <input
-        type="text"
-        placeholder="Enter keyword of Book"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        onKeyDown={searchBook}
-      />
-      <Button text="Search" handleClick={searchBook} />
-    </div>
-    <div className="container">
-      <Card book={bookData} />
-    </div> */}
       </main>
     </>
   );
