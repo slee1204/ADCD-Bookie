@@ -2,6 +2,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "./Icon";
+import { colors } from "@/Variables/variables";
 
 const Book = styled.div`
   box-sizing: border-box;
@@ -15,6 +16,21 @@ const Book = styled.div`
   border-radius: 15px;
 `;
 
+const BookTitle = styled.h1`
+font-weight: 700;
+`
+
+const BookSubtitle = styled.h2`
+font-weight: 400;
+font-color: var(--text-gray-color);
+`
+const BookAuthor = styled.h3`
+font-weight: 400;
+font-style: italic;
+`
+
+
+
 const Overlay = styled.div`
 position: fixed;
 top: 50%;
@@ -22,17 +38,23 @@ left: 50%;
 transform: translate(-50%, -50%);
 width: 60vw;
 height: 70vh;
-justify-content: center;
+justify-content: flex-start;
 align-items: center;
 display: flex;
 flex-direction: column;
-border: solid 1px black;
-padding: 2rem;
+border: 2px solid var(--border-color);
+padding: 3rem;
 background-color: var(--main-background-color);
 z-index: 9999;
+border-radius: 10px;
+overflow: scroll;
+padding-top: 2rem;
 `;
 const ImageCont = styled.div``;
-const InfoCont = styled.div``;
+const InfoCont = styled.div`
+gap: 2rem;
+
+`;
 const IconCont = styled.div`
   align-self: flex-end;
 `;
@@ -41,6 +63,7 @@ const TextCont = styled.div`
   flex-direction: row;
   width: 100%;
   gap: 0.5rem;
+  margin-bottom: 0.7rem;
 `;
 
 const FlexBox = styled.div`
@@ -50,9 +73,39 @@ const FlexBox = styled.div`
   gap: 2rem;
 `;
 
+const Divider = styled.div`
+width: 100%;
+height: .5rem;
+background: var(--primaryYellow);
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+border-radius: 50px 50px 0px 0px;
+`
+const styles = {
+  border: colors.text.black,
+  boxShadow: {
+    default: colors.primary.yellow,
+    hover: colors.primary.orange,
+  },
+};
+
+const HeadingBox = styled.div`
+border: 2px solid ${styles.border};
+width: fit-content;
+padding: 0.2rem 0.4rem;
+border-radius: 8px;
+box-shadow: 2px 2px 0px 1px ${styles.boxShadow.default};
+font-weight: 600;
+font-style: italic;
+
+`
+const DescBox = styled.div`
+width: 70%;
+padding: 2rem 2rem 2rem 0;
+`
 const QuoteBox = styled.div`
 `
-
 
 export default function Card(props) {
   const [openBook, setOpenBook] = useState(false); // open overlay
@@ -104,32 +157,24 @@ export default function Card(props) {
               </div>
             </Book>
             <InfoCont>
-              <h1>{props.title}</h1>
-              <h2>{props.subtitle}</h2>
-              <h3>{props.author}</h3>
+              <BookTitle>{props.title}</BookTitle>
+              <BookSubtitle>{props.subtitle}</BookSubtitle>
+              <BookAuthor>Written By: {props.author}</BookAuthor>
               <TextCont>
-                <div>Genres: </div>
-                <div>{props.categories}</div>
+                <HeadingBox>{props.categories}</HeadingBox>
+                <HeadingBox>Published on {props.publishedDate}</HeadingBox>
+                <HeadingBox>{props.pageCount} pages</HeadingBox>
               </TextCont>
-              <TextCont>
-                <div>Published Date: </div>
-                <div>{props.publishedDate}</div>
-              </TextCont>
-              <TextCont>
-                <div>Publisher: </div>
-                <div>{props.publisher}</div>
-              </TextCont>
-              <TextCont>
-                <div>Page Count: </div>
-                <div>{props.pageCount}</div>
-              </TextCont>
+
               <div>
-                <div>Description: </div>
-                <div>{props.description}</div>
+                <HeadingBox>Description: </HeadingBox>
+                <DescBox>{props.description}</DescBox>
               </div>
               
             </InfoCont>
+            
           </FlexBox>
+          <Divider />
               <QuoteBox>
                 <div>"{props.quote}"</div>
                 <div>- by {props.quoteAuthor}</div>
