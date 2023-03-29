@@ -33,17 +33,17 @@ const ImageCont = styled.div`
 
 const MiniThumbnail = styled.img`
   width: ${(props) => props.width};
-  max-width: 100%;
+  min-width: 100%;
   aspect-ratio: 0.8;
 `;
 
 const InfoCont = styled.div`
-  gap: 2rem;
+  gap: 3rem;
 `;
 
 const BookTitle = styled.h1`
   font-weight: 700;
-  font-size: ${props => props.fontSize}
+  font-size: ${(props) => props.fontSize}
 `;
 
 const BookSubtitle = styled.h2`
@@ -86,7 +86,6 @@ const TextCont = styled.div`
   flex-direction: row;
   width: 100%;
   gap: 0.5rem;
-  margin-bottom: 0.7rem;
 `;
 
 const FlexBox = styled.div`
@@ -107,8 +106,10 @@ const HeadingBox = styled.div`
 `;
 
 const DescBox = styled.div`
-  width: 70%;
-  padding: 2rem 2rem 2rem 0;
+display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  gap: .5rem;
 `;
 
 const Quote = styled.div`
@@ -169,7 +170,7 @@ export default function Card(props) {
           <FlexBox>
             <div>
               <ImageCont>
-                <MiniThumbnail width="300px" src={props.src} />
+                <MiniThumbnail width="150px" src={props.src} />
               </ImageCont>
             </div>
             <InfoCont>
@@ -181,10 +182,10 @@ export default function Card(props) {
                 <HeadingBox>Published on {props.publishedDate}</HeadingBox>
                 <HeadingBox>{props.pageCount} pages</HeadingBox>
               </TextCont>
-              <div>
+              <DescBox>
                 <HeadingBox>Description: </HeadingBox>
-                <DescBox>{props.description}</DescBox>
-              </div>
+                <div>{props.description}</div>
+              </DescBox>
             </InfoCont>
           </FlexBox>
           <DescBox>

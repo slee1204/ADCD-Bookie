@@ -107,29 +107,20 @@ export default function Results() {
       `https://api.api-ninjas.com/v1/quotes?category=${quoteCategories}&limit=10`,
       options
     );
-    let arrayofData = [];
-    const qresult = quoteResults.data;
-    // console.log(qresult);
-    // arrayofData = qresult.data;
-    arrayofData.push(qresult[0])
-    console.log(arrayofData);
+    let arrayOfData = [];
+    const res = quoteResults.data;
+    arrayOfData.push(res[0])
+    console.log(arrayOfData);
     try {
-      axios.all([quoteResults]).then(
-        axios.spread((...allData) => {
-          // const checkQuote = allData[0];
-          // const forYouQuote = allData[0].data;
+      for (var i = 0; i < arrayOfData.length; i++) {
 
-          // setQuoteData(forYouQuote);
-          for (var i = 0; i < arrayofData.length; i++) {
-            setQuote(arrayofData[i].quote);
-            setQuoteAuthor(arrayofData[i].author);
-            setQuoteCategories(arrayofData[i].category);
-          }
-
-          // console.log(checkQuote)
-        })
-      );
-      // res.status(200).json(data);
+        if (arrayOfData[i].quote !== undefined) {
+          setQuote(arrayOfData[i].quote);
+        }
+        if (arrayOfData[i].author !== undefined) {
+          setQuoteAuthor(arrayOfData[i].author);
+        }
+      }
     } catch (error) {
       console.log(error);
     }
