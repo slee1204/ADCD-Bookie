@@ -12,7 +12,6 @@ export default function Results() {
   const [genre, setGenre] = useState("");
   const [forYouData, setForYouData] = useState([]);
   const [popularData, setPopularData] = useState([]);
-  const maxNum = 10;
 
   const fetchData = async () => {
     const apiKey = "AIzaSyAQ69YB558lrwgkjXDixSDKwzUv8HaW9e0";
@@ -55,10 +54,9 @@ export default function Results() {
   const [quote, setQuote] = useState("");
   const [quoteAuthor, setQuoteAuthor] = useState("");
   const [quoteCategories, setQuoteCategories] = useState("");
-  // const [quoteData, setQuoteData] = useState([]);
-
   const param = router.query["genre"];
   console.log(param);
+
   const getCategory = async () => {
     if (param == "Action" || param == "action") {
       setQuoteCategories("courage");
@@ -108,29 +106,16 @@ export default function Results() {
       `https://api.api-ninjas.com/v1/quotes?category=${quoteCategories}&limit=10`,
       options
     );
-    let arrayofData = [];
-    const qresult = quoteResults.data;
-    // console.log(qresult);
-    // arrayofData = qresult.data;
-    arrayofData.push(qresult[0])
-    console.log(arrayofData);
+    let arrayOfData = [];
+    const qResults = quoteResults.data;
+    arrayOfData.push(qResults[0]);
+    console.log(arrayOfData);
     try {
-      axios.all([quoteResults]).then(
-        axios.spread((...allData) => {
-          // const checkQuote = allData[0];
-          // const forYouQuote = allData[0].data;
-
-          // setQuoteData(forYouQuote);
-          for (var i = 0; i < arrayofData.length; i++) {
-            setQuote(arrayofData[i].quote);
-            setQuoteAuthor(arrayofData[i].author);
-            setQuoteCategories(arrayofData[i].category);
-          }
-
-          // console.log(checkQuote)
-        })
-      );
-      // res.status(200).json(data);
+      for (var i = 0; i < arrayOfData.length; i++) {
+        setQuote(arrayOfData[i].quote);
+        setQuoteAuthor(arrayOfData[i].author);
+        setQuoteCategories(arrayOfData[i].category);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -210,21 +195,6 @@ export default function Results() {
             })}
           </div>
         </div>
-
-        {/* 
-    <div>
-      <input
-        type="text"
-        placeholder="Enter keyword of Book"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        onKeyDown={searchBook}
-      />
-      <Button text="Search" handleClick={searchBook} />
-    </div>
-    <div className="container">
-      <Card book={bookData} />
-    </div> */}
       </main>
     </>
   );
