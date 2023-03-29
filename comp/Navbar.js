@@ -28,7 +28,7 @@ const Logo = styled.img`
 
 export default function Navbar() {
   const router = useRouter();
-  const logo = "logo.svg";
+  const logo = "LOGO.svg";
 
   return (
     <NavbarCont id="navbar">
