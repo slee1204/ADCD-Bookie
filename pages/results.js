@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Card from "@/comp/Card";
 import axios from "axios";
 import styles from "../styles/Results.module.css";
-import { genres } from "@/public/data/genres";
+import genres from "@/public/data/genres.json";
 import Genre from "@/comp/Genre";
 import Head from "next/head";
 
