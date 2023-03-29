@@ -10,6 +10,10 @@ const styles = {
   },
 };
 
+const Image = styled.img`
+  width: 150px;
+`
+
 const KeywordCont = styled.button`
   box-sizing: border-box;
   display: flex;
@@ -20,7 +24,7 @@ const KeywordCont = styled.button`
   width: 100%;
   max-width: 167px;
   height: 100%;
-  max-height: 80px;
+  // max-height: 80px;
   padding: 0.5rem;
   border: 2px solid ${styles.border};
   border-radius: 10px;
@@ -55,6 +59,7 @@ export default function Genre({
 
   return (
     <KeywordCont onClick={handleClick}>
+      {image && <Image src={src} alt={alt} />}
       <div>{text}</div>
     </KeywordCont>
   );
