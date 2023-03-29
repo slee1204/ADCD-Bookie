@@ -23,8 +23,8 @@ const KeywordCont = styled.button`
   align-items: center;
   width: 80%;
   max-width: 160px;
-  height: 100%;
-  max-height: 60px;
+  height: fit-content;
+  // max-height: 60px;
   padding: 0.5rem;
   border: 2px solid ${styles.border};
   border-radius: 10px;
