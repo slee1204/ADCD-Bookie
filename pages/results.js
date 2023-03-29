@@ -156,7 +156,7 @@ export default function Results() {
       <main className={styles.main}>
         <div className={styles.container}>
           <div>
-            <h1>Discover Other Genres </h1>
+            <h1 className="h1">Discover Other Genres</h1>
             <div className={styles.carousel}>
               {genres &&
                 genres.map((o, i) => (
