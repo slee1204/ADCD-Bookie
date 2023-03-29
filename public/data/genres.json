@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Action",
+    "query": "action",
+    "src": "/genreImages/action.jpeg",
+    "cat": "courage"
+  },
+  {
+    "title": "Comedy",
+    "query": "comedy",
+    "src": "/genreImages/comedy.jpeg",
+    "cat": "funny"
+  },
+  {
+    "title": "Drama",
+    "query": "drama",
+    "src": "/genreImages/drama.jpeg",
+    "cat": "life"
+  },
+  {
+    "title": "Horror",
+    "query": "horror",
+    "src": "/genreImages/horror.jpeg",
+    "cat": "fear"
+  },
+  {
+    "title": "Romance",
+    "query": "romance",
+    "src": "/genreImages/romance.jpeg",
+    "cat": "love"
+  },
+  {
+    "title": "Thriller",
+    "query": "thriller",
+    "src": "/genreImages/romance.jpeg",
+    "cat": "fear"
+  },
+  {
+    "title": "Animation",
+    "query": "animation",
+    "src": "/genreImages/animation.jpeg",
+    "cat": "happy"
+  },
+  {
+    "title": "Fiction",
+    "query": "fiction",
+    "src": "/genreImages/fiction.jpeg",
+    "cat": "imagination"
+  },
+  {
+    "title": "Crime",
+    "query": "crime",
+    "src": "/genreImages/crime.jpeg",
+    "cat": "movie"
+  },
+  {
+    "title": "Mystery",
+    "query": "mystery",
+    "src": "/genreImages/mystery.jpeg",
+    "cat": "movie"
+  },
+  {
+    "title": "Musical",
+    "query": "musical",
+    "src": "/genreImages/musical.jpeg",
+    "cat": "amazing"
+  },
+  {
+    "title": "Western",
+    "query": "western",
+    "src": "/genreImages/western.jpeg",
+    "cat": "friendship"
+  },
+  {
+    "title": "Adventure",
+    "query": "adventure",
+    "src": "/genreImages/adventure.jpeg",
+    "cat": "experience"
+  },
+  {
+    "title": "Documentary",
+    "query": "documentary",
+    "src": "/genreImages/documentary.jpeg",
+    "cat": "life"
+  },
+  {
+    "title": "Family",
+    "query": "family",
+    "src": "/genreImages/family.jpeg",
+    "cat": "family"
+  }
+]
