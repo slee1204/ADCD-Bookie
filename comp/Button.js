@@ -19,7 +19,7 @@ const ButtonCont = styled.button`
   min-height: 70px;
   border: 2px solid ${styles.border};
   border-radius: 10px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 20px;
   line-height: 30px;
   box-shadow: 3px 3px 0px 1px ${styles.boxShadow.default};
