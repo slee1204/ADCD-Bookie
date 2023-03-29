@@ -55,7 +55,6 @@ export default function Genre({
 
   return (
     <KeywordCont onClick={handleClick}>
-      {image && <img src={src} alt={alt} />}
       <div>{text}</div>
     </KeywordCont>
   );
