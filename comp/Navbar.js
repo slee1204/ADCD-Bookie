@@ -49,7 +49,6 @@ export default function Navbar() {
   return <NavbarCont>
     <Comps>
       <Logo src={logo} onClick={()=> router.push("/")} />
-      <SearchBar handleChange={handleChange} />
     </Comps>
   </NavbarCont>
 }
