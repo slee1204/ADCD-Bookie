@@ -17,7 +17,7 @@ const QuoteMark = styled.div`
   width: 100%;
   margin: 0;
   height: fit-content;
-  text-align: ${props => props.textAlign}
+  text-align: ${(props) => props.textAlign};
 `;
 
 const BigContainer = styled.div`
@@ -27,13 +27,13 @@ const BigContainer = styled.div`
   gap: 1rem;
   background: var(--main-background-color);
   border: 2px solid var(--border-color);
-  QuoteContainer-shadow: 3px 3px 0px 1px var(--primaryYellow);
+  quotecontainer-shadow: 3px 3px 0px 1px var(--primaryYellow);
   border-radius: 10px;
   height: 100%;
 `;
 
 const Bar = styled.div`
-  width: .7rem;
+  width: 0.7rem;
   height: 100%;
   background: var(--primaryYellow);
   border-radius: 22px 0px 0px 22px;
@@ -53,7 +53,7 @@ const QuoteContainer = styled.div`
 
 const Content = styled.div`
   width: 100%;
-  text-align: ${props => props.textAlign}
+  text-align: ${(props) => props.textAlign};
 `;
 
 export default function QuoteCard(props) {

@@ -12,19 +12,19 @@ const styles = {
 
 const Image = styled.img`
   width: 150px;
-`
+`;
 
 const KeywordCont = styled.button`
   box-sizing: border-box;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: center;
   width: 80%;
   max-width: 160px;
-  height: fit-content;
-  // max-height: 60px;
+  height: 160px;
+  max-height: fit-content;
   padding: 0.5rem;
   border: 2px solid ${styles.border};
   border-radius: 10px;
@@ -47,14 +47,14 @@ export default function Genre({
   text = "",
   handleClick = () => {},
   src = "",
-  alt = ""
+  alt = "",
 }) {
   const [image, setImage] = useState(false);
 
   useEffect(() => {
     if (src) {
-      setImage (true)
-    } else setImage(false)
+      setImage(true);
+    } else setImage(false);
   }, []);
 
   return (

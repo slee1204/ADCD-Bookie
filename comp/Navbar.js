@@ -1,9 +1,6 @@
 import { colors } from "@/Variables/variables";
 import styled from "styled-components";
-import SearchBar from "./SearchBar";
-import { useState } from "react";
 import { useRouter } from "next/router";
-
 
 const NavbarCont = styled.div`
   position: relative;
@@ -12,7 +9,8 @@ const NavbarCont = styled.div`
   background-color: ${colors.primary.yellow};
   justify-content: center;
   align-items: center;
-`
+`;
+
 const Comps = styled.div`
   margin: auto 7.5rem;
   background-color: transparent;
@@ -20,35 +18,23 @@ const Comps = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 const Logo = styled.img`
   height: 50%;
   background-color: transparent;
   cursor: pointer;
-`
+`;
 
 export default function Navbar() {
-
-  const [searchInput, setSearchInput] = useState("");
   const router = useRouter();
+  const logo = "logo.svg";
 
-  if (searchInput.length > 0) {
-    data.filter((category) => {
-      return category.match(searchInput);
-    });
-  }
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-  };
-
-  const logo = "LOGO.svg"
-
-  return <NavbarCont id ="navbar">
-    <Comps>
-      <Logo src={logo} onClick={()=> router.push("/")} />
-    </Comps>
-  </NavbarCont>
+  return (
+    <NavbarCont id="navbar">
+      <Comps>
+        <Logo src={logo} onClick={() => router.push("/")} />
+      </Comps>
+    </NavbarCont>
+  );
 }

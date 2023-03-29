@@ -28,23 +28,22 @@ test.describe("The Image Area", () => {
   });
 });
 
-
 test.describe("Button test", () => {
   test("This is the info component", async ({ page }) => {
     await page.goto(urlHome);
     await expect(page.locator("button")).toContainText("Get started");
-  })
+  });
   test("Should contain a link to onboarding page", async ({ page }) => {
     await page.goto(urlHome);
     await page.click("text=Get Started");
     await expect(page).toHaveURL(urlOnboarding);
-  })
-})
+  });
+});
 
 test.describe("Navigation bar test", () => {
   test("Should contain a link back to home page", async ({ page }) => {
     await page.goto(urlHome);
     await page.click("#navbar");
     await expect(page).toHaveURL(urlHome);
-  })
-})
+  });
+});

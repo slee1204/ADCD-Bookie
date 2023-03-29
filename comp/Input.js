@@ -16,7 +16,9 @@ const InputCont = styled.input`
 export default function Input({
   type = "text",
   placeholder = "placeholder text",
-  handleChange = ()=> {}
+  handleChange = () => {},
 }) {
-  return <InputCont type={type} placeholder={placeholder} onChange={handleChange} />;
+  return (
+    <InputCont type={type} placeholder={placeholder} onChange={handleChange} />
+  );
 }

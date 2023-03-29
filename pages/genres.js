@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "@/comp/Card";
 import Head from "next/head";
-import styles from "../styles/Genres.module.css"
+import styles from "../styles/Genres.module.css";
 import { genres } from "@/public/data/genres";
 import Genre from "@/comp/Genre";
 
@@ -28,8 +28,8 @@ export default function Genres() {
   };
 
   const chooseGenre = (genre) => {
-    setGenre(genre.charAt(0).toUpperCase() + genre.slice(1))
-  }
+    setGenre(genre.charAt(0).toUpperCase() + genre.slice(1));
+  };
 
   useEffect(() => {
     const chosenGenre = router.query.genre;
@@ -74,16 +74,16 @@ export default function Genres() {
               {bookData.map((o, i) => {
                 return (
                   <Card
-                  key={i}
-                  title={o.volumeInfo.title}
-                  author={o.volumeInfo.authors}
-                  src={o.volumeInfo.imageLinks.smallThumbnail}
-                  subtitle={o.volumeInfo.subtitle}
-                  categories={o.volumeInfo.categories}
-                  description={o.volumeInfo.description}
-                  publishedDate={o.volumeInfo.publishedDate}
-                  pageCount={o.volumeInfo.pageCount}
-                />
+                    key={i}
+                    title={o.volumeInfo.title}
+                    author={o.volumeInfo.authors}
+                    src={o.volumeInfo.imageLinks.smallThumbnail}
+                    subtitle={o.volumeInfo.subtitle}
+                    categories={o.volumeInfo.categories}
+                    description={o.volumeInfo.description}
+                    publishedDate={o.volumeInfo.publishedDate}
+                    pageCount={o.volumeInfo.pageCount}
+                  />
                 );
               })}
             </div>

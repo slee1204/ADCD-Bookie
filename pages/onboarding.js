@@ -5,7 +5,7 @@ import Button from "@/comp/Button";
 import { useRouter } from "next/router";
 import styles from "../styles/Onboarding.module.css";
 import Head from "next/head";
-import genres from "@/public/data/genres.json"
+import genres from "@/public/data/genres.json";
 
 export default function Onboarding() {
   const [genre, setGenre] = useState("fiction");
@@ -15,27 +15,17 @@ export default function Onboarding() {
 
   useEffect(() => {
     console.log(genre);
-    // showGenres()
   }, []);
 
   const chooseGenre = (genre) => {
     setGenre(genre);
-    console.log(genre)
+    console.log(genre);
     axios.get(
       `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&key=${apiKey}&maxResults=20`
     );
-    router.push({pathname: "/results", query: {genre: genre}});
+    router.push({ pathname: "/results", query: { genre: genre } });
   };
-
-  // const showRecommendations = async () => {
-  //   // const apiKey = "AIzaSyAQ69YB558lrwgkjXDixSDKwzUv8HaW9e0";
-  //   const results = await axios.get(
-  //     `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&key=${apiKey}&maxResults=40`
-  //   );
-  //   console.log(results.data);
-  //   router.push({pathname: "/results", query: {genre: genre}});
-  // };
-
+  
   return (
     <>
       <Head>
